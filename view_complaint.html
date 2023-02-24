@@ -1,0 +1,41 @@
+{% extends "Admin/ADMIN_INDEX.html" %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body><form action="" method="get"><table width="800" class="table table-hover table-active">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">DATE</th>
+    <th scope="col">USER NAME</th>
+    <th scope="col">COMPLAINT</th>
+    <th scope="col">&nbsp;</th>
+  </tr>
+  {% for i in data %}
+  <tr>
+    <td>&nbsp;{{ loop.index }}</td>
+    <td>&nbsp;{{ i.date }}</td>
+    <td>&nbsp;{{ i.name }}</td>
+    <td>&nbsp;{{ i.complaint }}</td>
+      {% if i.reply=='pending' %}
+    <td>
+
+      <p><a href="/send_reply/{{ i.complaint_id }}#about" class="btn btn-outline-success" style="text-decoration: none">SEND REPLY</a></p>
+
+
+      </td>
+   {% else %}
+  <td>Reply date: {{ i.r_date }}<br>Reply: {{ i.reply }}</td>
+  {% endif %}
+    
+  </tr>
+    {% endfor %}
+</table>
+</form>
+</body>
+</html>
+{% endblock %}
